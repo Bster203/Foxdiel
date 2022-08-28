@@ -11,11 +11,13 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             rb.velocity = new Vector2(-5, rb.velocity.y);
+            transform.localScale = new Vector2(-1, 1);
         }
 
         if (Input.GetKey(KeyCode.RightArrow))
         {
             rb.velocity = new Vector2(5, rb.velocity.y);
+            transform.localScale = new Vector2(1, 1);
         }
 
         if (Input.GetKey(KeyCode.Space))
