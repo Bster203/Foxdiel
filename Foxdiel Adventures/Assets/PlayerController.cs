@@ -8,11 +8,14 @@ public class PlayerController : MonoBehaviour
     private Animator anim;
     private enum State { idle, running, jumping, falling }
     private State state = State.idle;
+    private Collider2D coll;
+    [SerializeField] private LayerMask ground;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        coll = GetComponent<Collider2D>();
     }
 
     private void Update()
@@ -36,7 +39,7 @@ public class PlayerController : MonoBehaviour
 
         }
 
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetButtonDown("Jump") && coll.IsTouchingLayers(ground))
         {
             rb.velocity = new Vector2(rb.velocity.x, 10);
             state = State.jumping;
@@ -50,7 +53,17 @@ public class PlayerController : MonoBehaviour
     {
         if (state == State.jumping)
         {
-
+            if(rb.velocity.y < .1f)
+            {
+                state = State.falling;
+            }
+        }
+        else if(state == State.falling)
+        {
+            if (coll.IsTouchingLayers(ground))
+            {
+                state = State.idle;
+            }
         }
 
         else if (Mathf.Abs(rb.velocity.x) > 2f)
