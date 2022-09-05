@@ -874,6 +874,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4344353117874164073, guid: 270f44fe1f13ba7479f613ce12ee574e,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4344353117874164075, guid: 270f44fe1f13ba7479f613ce12ee574e,
         type: 3}
       propertyPath: cherrytext
