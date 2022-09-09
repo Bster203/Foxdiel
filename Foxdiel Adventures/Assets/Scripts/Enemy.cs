@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour
     public void JumpedOn()
     {
         anim.SetTrigger("Death");
+        rb.velocity = Vector2.zero;
     }
 
     private void Death()
