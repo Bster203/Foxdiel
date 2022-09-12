@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
     private Collider2D coll;
+    private AudioSource footstep;
     
 
     //FSM (Finite State Machine)
@@ -31,6 +32,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         coll = GetComponent<Collider2D>();
+        footstep = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -138,5 +140,10 @@ public class PlayerController : MonoBehaviour
         {
             state = State.idle;
         }
+    }
+
+    private void Footstep()
+    {
+        footstep.Play();
     }
 }
