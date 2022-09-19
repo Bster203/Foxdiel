@@ -1989,7 +1989,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d21e531480b35cc41b09c8e07e7e358d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: TheEnd
+  sceneName: Secondscene
 --- !u!1001 &4344353117854051245
 PrefabInstance:
   m_ObjectHideFlags: 0
