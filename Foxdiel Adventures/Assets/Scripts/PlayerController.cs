@@ -22,22 +22,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask ground;
     [SerializeField] private float speed = 5f;
     [SerializeField] private float jumpForce = 10f;
-    [SerializeField] private int cherries = 0;
-    [SerializeField] private TextMeshProUGUI cherrytext;
     [SerializeField] private float hurtForce = 5f;
     [SerializeField] private AudioSource cherry;
     [SerializeField] private AudioSource footstep;
-    [SerializeField] private int health;
-    [SerializeField] private Text healthAmount;
-
-
-
+    
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         coll = GetComponent<Collider2D>();
-        healthAmount.text = health.ToString();
+        PermanentUI.perm.healthAmount.text = PermanentUI.perm.health.ToString();
     }
 
     private void Update()
@@ -56,8 +50,8 @@ public class PlayerController : MonoBehaviour
         {
             cherry.Play();
             Destroy(collision.gameObject);
-            cherries += 1;
-            cherrytext.text = cherries.ToString();
+            PermanentUI.perm.cherries += 1;
+            PermanentUI.perm.cherryText.text = PermanentUI.perm.cherries.ToString();
         }
         if(collision.tag == "Powerup")
         {
@@ -96,9 +90,9 @@ public class PlayerController : MonoBehaviour
 
     private void HandleHealth()
     {
-        health -= 1;
-        healthAmount.text = health.ToString();
-        if (health <= 0)
+        PermanentUI.perm.health -= 1;
+        PermanentUI.perm.healthAmount.text = PermanentUI.perm.health.ToString();
+        if (PermanentUI.perm.health <= 0)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
