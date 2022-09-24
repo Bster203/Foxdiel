@@ -16,6 +16,7 @@ public class Ladder : MonoBehaviour
             {
                 case LadderPart.complete:
                     player.canClimb = true;
+                    player.ladder = this;
                     break;
                 case LadderPart.bottom:
                     player.bottomLadder = true;
