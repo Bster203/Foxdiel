@@ -15,8 +15,13 @@ public class PlayerController : MonoBehaviour
      
 
     //FSM (Finite State Machine)
-    private enum State { idle, running, jumping, falling, hurt}
+    private enum State { idle, running, jumping, falling, hurt, climb }
     private State state = State.idle;
+
+    //Ladder Variables
+    public bool canClimb = false;
+    public bool bottomLadder = false;
+    public bool topLadder = false;
     
     //Inspector variables
     [SerializeField] private LayerMask ground;
@@ -36,7 +41,11 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if(state != State.hurt)
+        if(state == State.climb)
+        {
+            Climb();
+        }
+        else if(state != State.hurt)
         {
             Movement();
         }
@@ -101,6 +110,11 @@ public class PlayerController : MonoBehaviour
     private void Movement()
     {
         float hDirection = Input.GetAxis("Horizontal");
+
+        if(canClimb && Mathf.Abs(Input.GetAxis("Vertical")) > .1f)
+        {
+            state = State.climb;
+        }
 
         if (hDirection < 0)
         {
@@ -170,5 +184,10 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(5);
         jumpForce = 9f;
         GetComponent<SpriteRenderer>().color = Color.white;
+    }
+
+    private void Climb()
+    {
+
     }
 }
